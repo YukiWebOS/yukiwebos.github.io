@@ -3,8 +3,8 @@ name: Deploy to GitHub Pages
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/30 * * * *"
-    
+    - cron: "0 0 * * *"
+
 permissions:
   contents: read
   pages: write
@@ -17,6 +17,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Clone YukiOS
         run: git clone https://github.com/Reeyuki/YukiOS.git
@@ -50,6 +51,7 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
+
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
